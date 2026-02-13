@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Rotina da Su 🌸</title>
+
+  <meta name="theme-color" content="#f7e8dd" />
+  <meta name="description" content="Rotina da Su - Planner fofinho, completo e editável 💖" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fbf6f0;
+      --bg2: #f7e8dd;
+      --card: rgba(255,255,255,0.75);
+      --card2: rgba(255,255,255,0.55);
+      --text: #3a2d2d;
+      --muted: rgba(58,45,45,0.65);
+
+      --pink: #ff7fb2;
+      --pink2: #ffb8d7;
+      --lilac: #b38cff;
+      --lilac2: #d7c3ff;
+      --tiffany: #47d7c8;
+      --tiffany2: #bff5ef;
+      --green: #79d79a;
+      --green2: #c7f3d6;
+      --beige: #e9d4c1;
+      --wood: #c9a57c;
+
+      --danger: #ff4d6d;
+      --warning: #ffcc5c;
+      --ok: #49d17c;
+
+      --shadow: 0 14px 35px rgba(0,0,0,0.10);
+      --shadow2: 0 10px 25px rgba(0,0,0,0.08);
+
+      --radius: 22px;
+      --radius2: 16px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{
+      margin:0;
+      padding:0;
+      font-family: "Quicksand", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at 20% 10%, #ffffff 0%, var(--bg) 45%, var(--bg2) 100%);
+      color: var(--text);
+    }
+
+    body{
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+
+    .app{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 120px 14px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .title h1{
+      margin:0;
+      font-size: 1.45rem;
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle{
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.2rem;
+    }
+
+    .motivation{
+      margin-top: 6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      align-items:center;
+    }
+
+    .pill{
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: linear-gradient(90deg, rgba(255,127,178,0.22), rgba(179,140,255,0.18));
+      border: 1px solid rgba(255,127,178,0.18);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .pill small{
+      font-weight: 600;
+      opacity: 0.75;
+    }
+
+    .btn{
+      border:none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor:pointer;
+      font-size: 0.9rem;
+      transition: transform .08s ease, filter .15s ease;
+      box-shadow: var(--shadow2);
+      background: linear-gradient(180deg, #ffffff, rgba(255,255,255,0.75));
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .btn:active{ transform: scale(0.98); }
+
+    .btnPrimary{
+      background: linear-gradient(180deg, rgba(255,127,178,0.85), rgba(179,140,255,0.75));
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 12px 26px rgba(179,140,255,0.25);
+    }
+
+    .btnSoft{
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55));
+      color: var(--text);
+    }
+
+    .btnDanger{
+      background: linear-gradient(180deg, rgba(255,77,109,0.85), rgba(255,77,109,0.65));
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+
+    .btnMini{
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      box-shadow: none;
+    }
+
+    .btnIcon{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      justify-content:center;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 860px){
+      .grid{
+        grid-template-columns: 1.25fr 0.75fr;
+      }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45));
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow:hidden;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute;
+      top:-80px;
+      right:-80px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,127,178,0.25), rgba(179,140,255,0.12));
+      filter: blur(0px);
+      opacity: 0.8;
+    }
+
+    .cardHeader{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cardTitle{
+      font-size: 1.05rem;
+      font-weight: 900;
+      margin:0;
+    }
+
+    .cardSub{
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .divider{
+      height: 1px;
+      width: 100%;
+      background: rgba(0,0,0,0.06);
+      margin: 12px 0;
+    }
+
+    .tabs{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin: 10px 0 14px 0;
+    }
+
+    .tab{
+      border:none;
+      cursor:pointer;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.88rem;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.06);
+      color: var(--text);
+      transition: transform .08s ease;
+    }
+    .tab:active{ transform: scale(0.98); }
+
+    .tab.active{
+      background: linear-gradient(180deg, rgba(255,127,178,0.85), rgba(255,184,215,0.65));
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.55);
+    }
+
+    .tag .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--pink);
+      box-shadow: 0 0 0 3px rgba(255,127,178,0.15);
+    }
+
+    .tag.tiffany .dot{ background: var(--tiffany); box-shadow: 0 0 0 3px rgba(71,215,200,0.18); }
+    .tag.green .dot{ background: var(--green); box-shadow: 0 0 0 3px rgba(121,215,154,0.18); }
+    .tag.lilac .dot{ background: var(--lilac); box-shadow: 0 0 0 3px rgba(179,140,255,0.18); }
+    .tag.beige .dot{ background: var(--wood); box-shadow: 0 0 0 3px rgba(201,165,124,0.18); }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    label{
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    input, select, textarea{
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.10);
+      padding: 12px 12px;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.85);
+      color: var(--text);
+      outline:none;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+      font-family: inherit;
+    }
+
+    textarea{
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .twoCols{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 520px){
+      .twoCols{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .taskList{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+
+    .task{
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      position: relative;
+      overflow:hidden;
+    }
+
+    .taskTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+    }
+
+    .taskLeft{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      flex:1;
+    }
+
+    .emoji{
+      font-size: 1.35rem;
+      line-height: 1;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+      min-width: 44px;
+      text-align:center;
+    }
+
+    .taskName{
+      margin:0;
+      font-weight: 900;
+      font-size: 0.98rem;
+    }
+
+    .taskMeta{
+      margin-top: 3px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      align-items:center;
+    }
+
+    .taskButtons{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    .checkRow{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+
+    .checkRow input[type="checkbox"]{
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      box-shadow:none;
+    }
+
+    .progressBar{
+      height: 12px;
+      width: 100%;
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
+      overflow:hidden;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .progressFill{
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,127,178,0.95), rgba(179,140,255,0.95));
+      transition: width .25s ease;
+    }
+
+    .small{
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.2rem;
+    }
+
+    .footerNav{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, rgba(251,246,240,0.25), rgba(247,232,221,0.95));
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      z-index: 999;
+    }
+
+    .footerNav .navRow{
+      max-width: 980px;
+      margin: 0 auto;
+      display:flex;
+      gap: 10px;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .navBtn{
+      flex: 1;
+      min-width: 110px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.65);
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor:pointer;
+      font-size: 0.86rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+    }
+
+    .navBtn.active{
+      background: linear-gradient(180deg, rgba(71,215,200,0.85), rgba(179,140,255,0.55));
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.30);
+    }
+
+    .modalOverlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.30);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 9999;
+    }
+
+    .modal{
+      width: 100%;
+      max-width: 720px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72));
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 26px;
+      padding: 14px;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.22);
+      backdrop-filter: blur(12px);
+      max-height: 86vh;
+      overflow:auto;
+      position: relative;
+    }
+
+    .modalHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .modalTitle{
+      margin:0;
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .closeX{
+      border:none;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 999px;
+      font-weight: 900;
+      cursor:pointer;
+      padding: 8px 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .miniGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 680px){
+      .miniGrid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .colorPickerRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+
+    .colorBtn{
+      border:none;
+      cursor:pointer;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+
+    .colorSwatch{
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.8);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    }
+
+    .woodStrip{
+      height: 10px;
+      width: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(201,165,124,0.55), rgba(233,212,193,0.55));
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-top: 8px;
+    }
+
+    .noteBox{
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+
+    .noteBox ul{
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    .noteBox li{
+      margin: 6px 0;
+      font-weight: 700;
+      color: rgba(58,45,45,0.9);
+    }
+
+    .waterCups{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .cup{
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 1.2rem;
+      cursor:pointer;
+      user-select:none;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.75);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform .08s ease;
+    }
+
+    .cup:active{ transform: scale(0.97); }
+
+    .cup.filled{
+      background: linear-gradient(180deg, rgba(71,215,200,0.65), rgba(71,215,200,0.30));
+      border: 1px solid rgba(71,215,200,0.30);
+    }
+
+    .tiny{
+      font-size: 0.8rem;
+      opacity: 0.8;
+      font-weight: 700;
+    }
+
+    .timerBox{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      background: rgba(255,255,255,0.60);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+
+    .timerTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+
+    .timerTime{
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .timerBtns{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+
+    .hint{
+      background: linear-gradient(180deg, rgba(255,184,215,0.35), rgba(255,255,255,0.35));
+      border: 1px dashed rgba(255,127,178,0.35);
+      border-radius: 18px;
+      padding: 10px 12px;
+      font-weight: 800;
+      color: rgba(58,45,45,0.8);
+    }
+
+    .chart{
+      width: 100%;
+      height: 180px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.55);
+      padding: 10px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+
+    canvas{
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .badge{
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .badge.ok{
+      background: rgba(73,209,124,0.18);
+      border: 1px solid rgba(73,209,124,0.25);
+    }
+
+    .badge.warn{
+      background: rgba(255,204,92,0.22);
+      border: 1px solid rgba(255,204,92,0.35);
+    }
+
+    .badge.bad{
+      background: rgba(255,77,109,0.15);
+      border: 1px solid rgba(255,77,109,0.25);
+    }
+
+    .sticky{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding-top: 4px;
+      background: linear-gradient(180deg, rgba(251,246,240,0.95), rgba(251,246,240,0.65));
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script>
+    const { useEffect, useMemo, useRef, useState } = React;
+
+    function uid(){
+      return Math.random().toString(16).slice(2) + "-" + Date.now().toString(16);
+    }
+
+    function todayKey(){
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      return yyyy + "-" + mm + "-" + dd;
+    }
+
+    function formatTime(seconds){
+      seconds = Math.max(0, Math.floor(seconds));
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      return String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+    }
+
+    function safeJSONParse(str, fallback){
+      try{
+        return JSON.parse(str);
+      }catch(e){
+        return fallback;
+      }
+    }
+
+    const COLOR_PRESETS = [
+      { key:"pink", label:"Rosa 💗", color:"#ff7fb2" },
+      { key:"lilac", label:"Lilás 💜", color:"#b38cff" },
+      { key:"tiffany", label:"Tiffany 💧", color:"#47d7c8" },
+      { key:"green", label:"Verde 🌱", color:"#79d79a" },
+      { key:"beige", label:"Bege/Madeira 🥣", color:"#c9a57c" },
+      { key:"black", label:"Preto 🖤", color:"#1f1a1a" },
+      { key:"white", label:"Branco 🤍", color:"#ffffff" },
+    ];
+
+    const EMOJI_SUGGESTIONS = [
+      "🌸","💖","✨","🕊️","📖","📝","⏰","👗","🧺","🫧","☀️","👐","💨","🚪",
+      "🛏️","🧹","🪣","🧽","🍽️","🍲","🔥","🥣","🫙","🥕","🥩","🫘","🍞",
+      "🌿","🌱","🌊","🌷","🪴","🐓","🐄","🐝","💊","💧","🖤","💇‍♀️","🧴",
+      "🧘‍♀️","🚿","💅","👑","🧡","💜","💗","🤍"
+    ];
+
+    const DEFAULT_QUOTES = [
+      "Su, você é capaz de cuidar da sua vida com doçura. 🌸",
+      "A vida não precisa ser perfeita para ser maravilhosa. ✨",
+      "Uma rotina leve é uma vida mais feliz. 💖",
+      "Você está construindo sua paz, um passo de cada vez. 🕊️",
+      "Seu lar é seu jardim. Cuide com amor. 🌷",
+      "Fé + constância = milagres silenciosos. 💧",
+      "Pequenas ações diárias criam grandes resultados. 🌿",
+      "Hoje você vai florescer. 🌸✨"
+    ];
+
+    const DEFAULT_MODULES = [
+      {
+        id: "rotina-constante",
+        name: "Rotina Constante",
+        emoji: "🕊️",
+        colorKey: "tiffany",
+        description: "Fé, estudo, reuniões e constância 💧",
+        tasks: [
+          { id: uid(), name:"Estudo da Bíblia com o Lucas", emoji:"📖", colorKey:"tiffany", schedule:"Segunda 19:00", minutes: 30, doneDates: {} },
+          { id: uid(), name:"Preparação (iniciar)", emoji:"⏰", colorKey:"tiffany", schedule:"Quarta 07:30", minutes: 20, doneDates: {} },
+          { id: uid(), name:"Campo pelo Zoom (cartas)", emoji:"✍️", colorKey:"tiffany", schedule:"Quarta 08:00", minutes: 60, doneDates: {} },
+          { id: uid(), name:"Preparar reunião meio de semana", emoji:"📝", colorKey:"tiffany", schedule:"Quarta 13:00", minutes: 45, doneDates: {} },
+          { id: uid(), name:"Estudo da Sentinela", emoji:"📚", colorKey:"tiffany", schedule:"Sábado pós-almoço", minutes: 45, doneDates: {} },
+          { id: uid(), name:"Arrumar crianças e sair para reunião", emoji:"👔", colorKey:"tiffany", schedule:"Sábado 17:00", minutes: 40, doneDates: {} },
+        ],
+        notes: [
+          "Sempre anotar pontos com capítulo e versículo 📖",
+          "Separar 3 ideias-chave para aplicar na semana ✨",
+          "Orar antes de começar e agradecer ao final 🕊️"
+        ]
+      },
+      {
+        id: "casa",
+        name: "Casa & Regras",
+        emoji: "🏡",
+        colorKey: "pink",
+        description: "Limpeza, lavanderia, closet e organização 💅",
+        tasks: [
+          { id: uid(), name:"Arrumar cama após Edinei levar Lucas", emoji:"🛏️", colorKey:"pink", schedule:"Diário", minutes: 5, doneDates: {} },
+          { id: uid(), name:"Varrer chão", emoji:"🧹", colorKey:"pink", schedule:"Diário", minutes: 15, doneDates: {} },
+          { id: uid(), name:"Passar pano", emoji:"🪣", colorKey:"pink", schedule:"Diário", minutes: 20, doneDates: {} },
+          { id: uid(), name:"Pia limpa", emoji:"🍽️", colorKey:"pink", schedule:"Diário", minutes: 10, doneDates: {} },
+          { id: uid(), name:"Regra do Closet: uma seção por dia", emoji:"👗", colorKey:"pink", schedule:"Diário", minutes: 20, doneDates: {} },
+          { id: uid(), name:"Lei do minimalismo (entrou uma peça, sai outra)", emoji:"🔄", colorKey:"pink", schedule:"Sempre", minutes: 5, doneDates: {} },
+        ],
+        notes: [
+          "Cinco Ous da lavanderia: Lavou 🫧 | Pendurou ☀️ | Dobrou 👐 | Passou 💨 | Guardou 🚪",
+          "Casa limpa = mente leve ✨",
+          "Se cansar, faça só 15 min. Isso conta 💖"
+        ]
+      },
+      {
+        id: "sitio",
+        name: "Sítio & Horta",
+        emoji: "🌿",
+        colorKey: "green",
+        description: "Horta, riacho, flores e cuidado da terra 🌱",
+        tasks: [
+          { id: uid(), name:"Horta do zero (almeirão + mudas)", emoji:"🌱", colorKey:"green", schedule:"Semanal", minutes: 45, doneDates: {} },
+          { id: uid(), name:"Riachinho (rastelar e flores)", emoji:"🌊", colorKey:"green", schedule:"Semanal", minutes: 35, doneDates: {} },
+          { id: uid(), name:"Cuidar das flores do fundo", emoji:"🌷", colorKey:"green", schedule:"Semanal", minutes: 25, doneDates: {} },
+        ],
+        notes: [
+          "Regar no final da tarde ajuda as mudas 🌿",
+          "Terra cuidada é vida multiplicada 🌱"
+        ]
+      },
+      {
+        id: "cozinha",
+        name: "Cozinha & Congelados",
+        emoji: "🍲",
+        colorKey: "beige",
+        description: "Produção semanal e estoque do freezer 🥣",
+        tasks: [
+          { id: uid(), name:"Dia da produção (fogão a lenha)", emoji:"🔥", colorKey:"beige", schedule:"1x por semana", minutes: 120, doneDates: {} },
+          { id: uid(), name:"Preparar feijão (congelar porções)", emoji:"🫘", colorKey:"beige", schedule:"Semanal", minutes: 60, doneDates: {} },
+          { id: uid(), name:"Preparar carne moída/desfiada", emoji:"🥩", colorKey:"beige", schedule:"Semanal", minutes: 70, doneDates: {} },
+          { id: uid(), name:"Branquear legumes (estoque)", emoji:"🥕", colorKey:"beige", schedule:"Semanal", minutes: 40, doneDates: {} },
+          { id: uid(), name:"Mistura seca pão de queijo/bolo", emoji:"🫙", colorKey:"beige", schedule:"Mensal", minutes: 30, doneDates: {} },
+          { id: uid(), name:"Organizar freezer e etiquetar", emoji:"🏷️", colorKey:"beige", schedule:"Semanal", minutes: 20, doneDates: {} },
+        ],
+        notes: [
+          "Fazer porções pequenas ajuda a semana render 🥣",
+          "Sempre etiquetar com data 🏷️",
+          "Cozinha organizada = paz no dia a dia ✨"
+        ]
+      },
+      {
+        id: "autocuidado",
+        name: "Autocuidado & Saúde",
+        emoji: "💅",
+        colorKey: "lilac",
+        description: "Beleza, água, anticoncepcional e cronograma 🖤",
+        tasks: [
+          { id: uid(), name:"Tomar anticoncepcional", emoji:"💊", colorKey:"lilac", schedule:"Diário", minutes: 1, doneDates: {} },
+          { id: uid(), name:"Cronograma capilar (H/N/R)", emoji:"🧴", colorKey:"lilac", schedule:"Semanal", minutes: 30, doneDates: {} },
+          { id: uid(), name:"Henê (verificar data e retoque)", emoji:"🖤", colorKey:"lilac", schedule:"Mensal", minutes: 20, doneDates: {} },
+          { id: uid(), name:"Depilação (marcar próxima)", emoji:"✨", colorKey:"lilac", schedule:"Mensal", minutes: 40, doneDates: {} },
+        ],
+        notes: [
+          "Beleza é autocuidado, não cobrança 💖",
+          "Seu corpo merece carinho ✨"
+        ]
+      }
+    ];
+
+    function App(){
+      const STORAGE_KEY = "rotina_su_app_v2";
+      const HUMOR_KEY = "rotina_su_humor_v2";
+
+      const [activeTab, setActiveTab] = useState("home");
+      const [modules, setModules] = useState([]);
+      const [quotes, setQuotes] = useState(DEFAULT_QUOTES);
+      const [quoteIndex, setQuoteIndex] = useState(0);
+
+      const [moodToday, setMoodToday] = useState(70);
+      const [moodHistory, setMoodHistory] = useState({});
+
+      const [showModalTask, setShowModalTask] = useState(false);
+      const [modalModuleId, setModalModuleId] = useState(null);
+      const [editTaskId, setEditTaskId] = useState(null);
+
+      const [taskName, setTaskName] = useState("");
+      const [taskEmoji, setTaskEmoji] = useState("🌸");
+      const [taskColorKey, setTaskColorKey] = useState("pink");
+      const [taskSchedule, setTaskSchedule] = useState("Diário");
+      const [taskMinutes, setTaskMinutes] = useState(15);
+
+      const [showThemeModal, setShowThemeModal] = useState(false);
+
+      const [timerSeconds, setTimerSeconds] = useState(15 * 60);
+      const [timerRunning, setTimerRunning] = useState(false);
+      const [timerLabel, setTimerLabel] = useState("Cronômetro Fofo ✨");
+
+      const timerRef = useRef(null);
+
+      useEffect(() => {
+        const saved = safeJSONParse(localStorage.getItem(STORAGE_KEY), null);
+        if(saved && saved.modules){
+          setModules(saved.modules);
+          if(saved.quotes) setQuotes(saved.quotes);
+          if(typeof saved.quoteIndex === "number") setQuoteIndex(saved.quoteIndex);
+        }else{
+          setModules(DEFAULT_MODULES);
+        }
+
+        const moodSaved = safeJSONParse(localStorage.getItem(HUMOR_KEY), {});
+        setMoodHistory(moodSaved);
+
+        const tk = todayKey();
+        if(moodSaved && moodSaved[tk] != null){
+          setMoodToday(moodSaved[tk]);
+        }
+      }, []);
+
+      useEffect(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          modules,
+          quotes,
+          quoteIndex
+        }));
+      }, [modules, quotes, quoteIndex]);
+
+      useEffect(() => {
+        const tk = todayKey();
+        const newHist = { ...moodHistory, [tk]: moodToday };
+        setMoodHistory(newHist);
+        localStorage.setItem(HUMOR_KEY, JSON.stringify(newHist));
+      }, [moodToday]);
+
+      useEffect(() => {
+        if(timerRunning){
+          timerRef.current = setInterval(() => {
+            setTimerSeconds(s => {
+              if(s <= 1){
+                clearInterval(timerRef.current);
+                timerRef.current = null;
+                setTimerRunning(false);
+                try{
+                  navigator.vibrate && navigator.vibrate([200,100,200,100,400]);
+                }catch(e){}
+                alert("⏰ Tempo acabou, Su! Você arrasou! 💖✨");
+                return 0;
+              }
+              return s - 1;
+            });
+          }, 1000);
+        }else{
+          if(timerRef.current){
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+          }
+        }
+        return () => {
+          if(timerRef.current){
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+          }
+        };
+      }, [timerRunning]);
+
+      const today = todayKey();
+
+      function colorOf(key){
+        const found = COLOR_PRESETS.find(c => c.key === key);
+        return found ? found.color : "#ff7fb2";
+      }
+
+      function moduleById(id){
+        return modules.find(m => m.id === id);
+      }
+
+      function toggleDone(moduleId, taskId){
+        setModules(prev => prev.map(m => {
+          if(m.id !== moduleId) return m;
+          return {
+            ...m,
+            tasks: m.tasks.map(t => {
+              if(t.id !== taskId) return t;
+              const doneDates = { ...(t.doneDates || {}) };
+              doneDates[today] = !doneDates[today];
+              return { ...t, doneDates };
+            })
+          };
+        }));
+      }
+
+      function openNewTask(moduleId){
+        setModalModuleId(moduleId);
+        setEditTaskId(null);
+        setTaskName("");
+        setTaskEmoji("🌸");
+        setTaskColorKey(moduleById(moduleId)?.colorKey || "pink");
+        setTaskSchedule("Diário");
+        setTaskMinutes(15);
+        setShowModalTask(true);
+      }
+
+      function openEditTask(moduleId, task){
+        setModalModuleId(moduleId);
+        setEditTaskId(task.id);
+        setTaskName(task.name);
+        setTaskEmoji(task.emoji || "🌸");
+        setTaskColorKey(task.colorKey || "pink");
+        setTaskSchedule(task.schedule || "Diário");
+        setTaskMinutes(task.minutes || 15);
+        setShowModalTask(true);
+      }
+
+      function saveTask(){
+        if(!modalModuleId) return;
+        if(!taskName.trim()){
+          alert("Digite o nome da tarefa 💖");
+          return;
+        }
+
+        setModules(prev => prev.map(m => {
+          if(m.id !== modalModuleId) return m;
+
+          if(editTaskId){
+            return {
+              ...m,
+              tasks: m.tasks.map(t => {
+                if(t.id !== editTaskId) return t;
+                return {
+                  ...t,
+                  name: taskName.trim(),
+                  emoji: taskEmoji,
+                  colorKey: taskColorKey,
+                  schedule: taskSchedule,
+                  minutes: Number(taskMinutes) || 15
+                };
+              })
+            };
+          }
+
+          return {
+            ...m,
+            tasks: [
+              ...m.tasks,
+              {
+                id: uid(),
+                name: taskName.trim(),
+                emoji: taskEmoji,
+                colorKey: taskColorKey,
+                schedule: taskSchedule,
+                minutes: Number(taskMinutes) || 15,
+                doneDates: {}
+              }
+            ]
+          };
+        }));
+
+        setShowModalTask(false);
+      }
+
+      function deleteTask(){
+        if(!modalModuleId || !editTaskId) return;
+        if(!confirm("Tem certeza que quer excluir essa tarefa? 🥺")) return;
+
+        setModules(prev => prev.map(m => {
+          if(m.id !== modalModuleId) return m;
+          return {
+            ...m,
+            tasks: m.tasks.filter(t => t.id !== editTaskId)
+          };
+        }));
+
+        setShowModalTask(false);
+      }
+
+      function percentDone(module){
+        if(!module.tasks.length) return 0;
+        const doneCount = module.tasks.filter(t => t.doneDates && t.doneDates[today]).length;
+        return Math.round((doneCount / module.tasks.length) * 100);
+      }
+
+      function totalDoneToday(){
+        let total = 0;
+        let done = 0;
+        modules.forEach(m => {
+          total += m.tasks.length;
+          done += m.tasks.filter(t => t.doneDates && t.doneDates[today]).length;
+        });
+        if(total === 0) return 0;
+        return Math.round((done / total) * 100);
+      }
+
+      function nextQuote(){
+        setQuoteIndex(i => (i + 1) % quotes.length);
+      }
+
+      function setTimerPreset(min){
+        setTimerSeconds(min * 60);
+        setTimerLabel("Cronômetro Fofo ✨ (" + min + " min)");
+      }
+
+      function startTaskTimer(task){
+        const mins = Number(task.minutes) || 15;
+        setTimerSeconds(mins * 60);
+        setTimerLabel("⏱️ " + task.emoji + " " + task.name);
+        setActiveTab("timer");
+      }
+
+      const currentQuote = quotes[quoteIndex] || DEFAULT_QUOTES[0];
+
+      return (
+        React.createElement("div", { className:"app" },
+
+          React.createElement("div", { className:"topbar" },
+            React.createElement("div", { className:"title" },
+              React.createElement("h1", null, "🌸 Rotina da Su"),
+              React.createElement("div", { className:"subtitle" },
+                "Seu app fofinho de organização ✨ — feito pra funcionar do seu jeitinho 💖"
+              ),
+              React.createElement("div", { className:"motivation" },
+                React.createElement("div", { className:"pill" }, "💬 ", currentQuote),
+                React.createElement("button", { className:"btn btnMini", onClick: nextQuote }, "Trocar frase ✨"),
+                React.createElement("button", { className:"btn btnMini btnSoft", onClick: () => setShowThemeModal(true) }, "🎨 Cores")
+              )
+            ),
+            React.createElement("div", { className:"row" },
+              React.createElement("button", {
+                className:"btn btnPrimary btnIcon",
+                onClick: () => setActiveTab("home")
+              }, "🏡 Início")
+            )
+          ),
+
+          React.createElement("div", { className:"woodStrip" }),
+
+          React.createElement("div", { className:"tabs sticky" },
+            React.createElement("button", { className: "tab " + (activeTab==="home" ? "active":""), onClick: () => setActiveTab("home") }, "🌸 Painel"),
+            React.createElement("button", { className: "tab " + (activeTab==="rotinas" ? "active":""), onClick: () => setActiveTab("rotinas") }, "📋 Rotinas"),
+            React.createElement("button", { className: "tab " + (activeTab==="timer" ? "active":""), onClick: () => setActiveTab("timer") }, "⏱️ Cronômetro"),
+            React.createElement("button", { className: "tab " + (activeTab==="humor" ? "active":""), onClick: () => setActiveTab("humor") }, "😊 Humor"),
+            React.createElement("button", { className: "tab " + (activeTab==="fechamento" ? "active":""), onClick: () => setActiveTab("fechamento") }, "📊 Fechamento"),
+          ),
+
+          (activeTab === "home") && React.createElement(HomePanel, {
+            modules,
+            moodToday,
+            setMoodToday,
+            totalDoneToday: totalDoneToday(),
+            colorOf,
+            percentDone,
+            openNewTask,
+            toggleDone,
+            startTaskTimer,
+            today
+          }),
+
+          (activeTab === "rotinas") && React.createElement(RotinasPanel, {
+            modules,
+            colorOf,
+            percentDone,
+            openNewTask,
+            toggleDone,
+            startTaskTimer,
+            openEditTask,
+            today
+          }),
+
+          (activeTab === "timer") && React.createElement(TimerPanel, {
+            timerSeconds,
+            setTimerSeconds,
+            timerRunning,
+            setTimerRunning,
+            timerLabel,
+            setTimerLabel,
+            setTimerPreset
+          }),
+
+          (activeTab === "humor") && React.createElement(HumorPanel, {
+            moodToday,
+            setMoodToday,
+            moodHistory
+          }),
+
+          (activeTab === "fechamento") && React.createElement(FechamentoPanel, {
+            modules,
+            moodHistory,
+            today,
+            colorOf
+          }),
+
+          React.createElement(ModalTask, {
+            show: showModalTask,
+            onClose: () => setShowModalTask(false),
+            onSave: saveTask,
+            onDelete: deleteTask,
+            editTaskId,
+            taskName, setTaskName,
+            taskEmoji, setTaskEmoji,
+            taskColorKey, setTaskColorKey,
+            taskSchedule, setTaskSchedule,
+            taskMinutes, setTaskMinutes
+          }),
+
+          React.createElement(ThemeModal, {
+            show: showThemeModal,
+            onClose: () => setShowThemeModal(false),
+            modules,
+            setModules,
+            quotes,
+            setQuotes,
+            colorOf
+          })
+        )
+      );
+    }
+
+    function HomePanel(props){
+      const {
+        modules,
+        moodToday,
+        setMoodToday,
+        totalDoneToday,
+        colorOf,
+        percentDone,
+        openNewTask,
+        toggleDone,
+        startTaskTimer,
+        today
+      } = props;
+
+      const topModules = modules.slice(0,3);
+
+      return (
+        React.createElement("div", { className:"grid" },
+
+          React.createElement("div", { className:"card" },
+            React.createElement("div", { className:"cardHeader" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"cardTitle" }, "🌸 Painel de Hoje"),
+                React.createElement("div", { className:"cardSub" }, "Seu progresso diário com doçura 💖")
+              ),
+              React.createElement("div", { className:"badge " + (totalDoneToday>=70 ? "ok" : totalDoneToday>=40 ? "warn" : "bad") },
+                totalDoneToday + "% feito"
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"field" },
+              React.createElement("label", null, "😊 Como a Su está se sentindo agora?"),
+              React.createElement("input", {
+                type:"range",
+                min: 0,
+                max: 100,
+                value: moodToday,
+                onChange: (e) => setMoodToday(Number(e.target.value))
+              }),
+              React.createElement("div", { className:"small" },
+                "Seu humor de hoje foi salvo automaticamente 💖 (", today, ")"
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"hint" },
+              "🌷 Dica da Li: Se estiver cansada, faça só 15 minutos. Consistência é mais forte que perfeição."
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"twoCols" },
+              topModules.map(m =>
+                React.createElement("div", { key:m.id, className:"noteBox" },
+                  React.createElement("div", { className:"row" },
+                    React.createElement("div", { className:"tag " + (m.colorKey || "pink") },
+                      React.createElement("span", { className:"dot", style:{ background: colorOf(m.colorKey) } }),
+                      m.emoji, " ", m.name
+                    ),
+                    React.createElement("div", { className:"badge" }, percentDone(m) + "%")
+                  ),
+
+                  React.createElement("div", { className:"progressBar", style:{ marginTop:"10px" } },
+                    React.createElement("div", { className:"progressFill", style:{ width: percentDone(m) + "%" } })
+                  ),
+
+                  React.createElement("div", { className:"row", style:{ marginTop:"10px" } },
+                    React.createElement("button", { className:"btn btnMini btnPrimary", onClick: () => openNewTask(m.id) }, "➕ Nova tarefa"),
+                  )
+                )
+              )
+            )
+          ),
+
+          React.createElement("div", { className:"card" },
+            React.createElement("div", { className:"cardHeader" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"cardTitle" }, "✨ Tarefinhas rápidas"),
+                React.createElement("div", { className:"cardSub" }, "As mais importantes de hoje 🌸")
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"taskList" },
+              modules.slice(0,2).flatMap(m => m.tasks.slice(0,2).map(t => {
+                const done = t.doneDates && t.doneDates[today];
+                return React.createElement("div", { key:t.id, className:"task" },
+                  React.createElement("div", { className:"taskTop" },
+                    React.createElement("div", { className:"taskLeft" },
+                      React.createElement("div", {
+                        className:"emoji",
+                        style:{ borderColor: colorOf(t.colorKey), boxShadow: "0 0 0 4px rgba(0,0,0,0.04)" }
+                      }, t.emoji || "🌸"),
+                      React.createElement("div", null,
+                        React.createElement("p", { className:"taskName" }, t.name),
+                        React.createElement("div", { className:"taskMeta" },
+                          React.createElement("span", null, "📅 ", t.schedule || "Diário"),
+                          React.createElement("span", null, "⏱️ ", (t.minutes || 15), " min"),
+                          done ? React.createElement("span", { className:"badge ok" }, "Feito 💖") : React.createElement("span", { className:"badge warn" }, "Pendente")
+                        )
+                      )
+                    ),
+                    React.createElement("div", { className:"taskButtons" },
+                      React.createElement("button", {
+                        className:"btn btnMini",
+                        onClick: () => startTaskTimer(t)
+                      }, "⏱️ Timer"),
+                      React.createElement("button", {
+                        className:"btn btnMini " + (done ? "btnSoft" : "btnPrimary"),
+                        onClick: () => toggleDone(m.id, t.id)
+                      }, done ? "Desmarcar" : "Concluir")
+                    )
+                  )
+                );
+              }))
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"small" },
+              "🌸 Seu app salva tudo automaticamente. Você pode fechar e voltar quando quiser."
+            )
+          )
+
+        )
+      );
+    }function RotinasPanel(props){
+      const {
+        modules,
+        colorOf,
+        percentDone,
+        openNewTask,
+        toggleDone,
+        startTaskTimer,
+        openEditTask,
+        today
+      } = props;
+
+      return (
+        React.createElement("div", { className:"card" },
+
+          React.createElement("div", { className:"cardHeader" },
+            React.createElement("div", null,
+              React.createElement("div", { className:"cardTitle" }, "📋 Rotinas da Su"),
+              React.createElement("div", { className:"cardSub" }, "Aqui você organiza tudo por categorias fofinhas 🌸")
+            )
+          ),
+
+          React.createElement("div", { className:"divider" }),
+
+          modules.map(module => (
+            React.createElement("div", { key:module.id, className:"task", style:{ marginBottom:"12px" } },
+
+              React.createElement("div", { className:"taskTop" },
+                React.createElement("div", { className:"taskLeft" },
+                  React.createElement("div", {
+                    className:"emoji",
+                    style:{
+                      borderColor: colorOf(module.colorKey),
+                      boxShadow: "0 0 0 4px rgba(0,0,0,0.04)"
+                    }
+                  }, module.emoji || "🌸"),
+                  React.createElement("div", null,
+                    React.createElement("p", { className:"taskName", style:{ fontSize:"1.05rem" } },
+                      module.name
+                    ),
+                    React.createElement("div", { className:"taskMeta" },
+                      React.createElement("span", null, module.description || ""),
+                      React.createElement("span", { className:"badge" }, percentDone(module) + "% feito")
+                    )
+                  )
+                ),
+                React.createElement("div", { className:"taskButtons" },
+                  React.createElement("button", {
+                    className:"btn btnMini btnPrimary",
+                    onClick: () => openNewTask(module.id)
+                  }, "➕ Adicionar"),
+                )
+              ),
+
+              React.createElement("div", { className:"progressBar", style:{ marginTop:"10px" } },
+                React.createElement("div", { className:"progressFill", style:{ width: percentDone(module) + "%" } })
+              ),
+
+              React.createElement("div", { className:"divider" }),
+
+              React.createElement("div", { className:"taskList" },
+                module.tasks.map(task => {
+                  const done = task.doneDates && task.doneDates[today];
+                  return React.createElement("div", { key:task.id, className:"noteBox" },
+
+                    React.createElement("div", { className:"taskTop" },
+                      React.createElement("div", { className:"taskLeft" },
+                        React.createElement("div", {
+                          className:"emoji",
+                          style:{
+                            borderColor: colorOf(task.colorKey),
+                            boxShadow: "0 0 0 4px rgba(0,0,0,0.03)"
+                          }
+                        }, task.emoji || "🌸"),
+
+                        React.createElement("div", null,
+                          React.createElement("p", { className:"taskName" }, task.name),
+                          React.createElement("div", { className:"taskMeta" },
+                            React.createElement("span", null, "📅 ", task.schedule || "Diário"),
+                            React.createElement("span", null, "⏱️ ", (task.minutes || 15), " min"),
+                            done
+                              ? React.createElement("span", { className:"badge ok" }, "Feito 💖")
+                              : React.createElement("span", { className:"badge warn" }, "Pendente 🌸")
+                          )
+                        )
+                      ),
+
+                      React.createElement("div", { className:"taskButtons" },
+
+                        React.createElement("button", {
+                          className:"btn btnMini",
+                          onClick: () => startTaskTimer(task)
+                        }, "⏱️"),
+
+                        React.createElement("button", {
+                          className:"btn btnMini btnSoft",
+                          onClick: () => openEditTask(module.id, task)
+                        }, "✏️"),
+
+                        React.createElement("button", {
+                          className:"btn btnMini " + (done ? "btnSoft" : "btnPrimary"),
+                          onClick: () => toggleDone(module.id, task.id)
+                        }, done ? "Desmarcar" : "Concluir")
+                      )
+                    )
+                  );
+                })
+              ),
+    module.notes && module.notes.length > 0 && React.createElement("div", null,
+                React.createElement("div", { className:"divider" }),
+                React.createElement("div", { className:"small", style:{ fontWeight:"900", marginBottom:"6px" } },
+                  "📝 Notas importantes:"
+                ),
+                React.createElement("div", { className:"noteBox" },
+                  React.createElement("ul", null,
+                    module.notes.map((n, idx) => React.createElement("li", { key:idx }, n))
+                  )
+                )
+              )
+            )
+          )),
+
+          React.createElement("div", { className:"divider" }),
+
+          React.createElement("div", { className:"hint" },
+            "✨ Você pode editar qualquer tarefa: mudar emoji, cor, tempo do cronômetro e frequência!"
+          )
+        )
+      );
+    }
+
+    function TimerPanel(props){
+      const {
+        timerSeconds,
+        setTimerSeconds,
+        timerRunning,
+        setTimerRunning,
+        timerLabel,
+        setTimerLabel,
+        setTimerPreset
+      } = props;
+
+      function addSeconds(s){
+        setTimerSeconds(prev => Math.max(0, prev + s));
+      }
+
+      function stop(){
+        setTimerRunning(false);
+      }
+
+      function reset(){
+        setTimerRunning(false);
+        setTimerSeconds(15 * 60);
+        setTimerLabel("Cronômetro Fofo ✨");
+      }
+
+      return (
+        React.createElement("div", { className:"card" },
+
+          React.createElement("div", { className:"cardHeader" },
+            React.createElement("div", null,
+              React.createElement("div", { className:"cardTitle" }, "⏱️ Cronômetro Ultra-Editável"),
+              React.createElement("div", { className:"cardSub" }, "Pra você ser rápida no sol ou no fim de tarde ☀️🌑")
+            )
+          ),
+
+          React.createElement("div", { className:"divider" }),
+
+          React.createElement("div", { className:"timerBox" },
+
+            React.createElement("div", { className:"timerTop" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"small" }, timerLabel),
+                React.createElement("div", { className:"timerTime" }, formatTime(timerSeconds))
+              ),
+              React.createElement("div", { className:"timerBtns" },
+                React.createElement("button", {
+                  className:"btn btnMini btnPrimary",
+                  onClick: () => setTimerRunning(r => !r)
+                }, timerRunning ? "⏸️ Pausar" : "▶️ Começar"),
+
+                React.createElement("button", {
+                  className:"btn btnMini",
+                  onClick: stop
+                }, "⏹️ Parar"),
+
+                React.createElement("button", {
+                  className:"btn btnMini btnSoft",
+                  onClick: reset
+                }, "🔄 Reset")
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"twoCols" },
+              React.createElement("div", { className:"noteBox" },
+                React.createElement("div", { style:{ fontWeight:"900" } }, "⚡ Botões rápidos"),
+                React.createElement("div", { className:"small" }, "Aperte e pronto 💖"),
+                React.createElement("div", { className:"row", style:{ marginTop:"10px" } },
+                  React.createElement("button", { className:"btn btnMini", onClick: () => setTimerPreset(5) }, "5 min"),
+                  React.createElement("button", { className:"btn btnMini", onClick: () => setTimerPreset(10) }, "10 min"),
+                  React.createElement("button", { className:"btn btnMini btnPrimary", onClick: () => setTimerPreset(15) }, "15 min"),
+                  React.createElement("button", { className:"btn btnMini", onClick: () => setTimerPreset(30) }, "30 min"),
+                  React.createElement("button", { className:"btn btnMini", onClick: () => setTimerPreset(60) }, "60 min")
+                )
+              ),
+
+              React.createElement("div", { className:"noteBox" },
+                React.createElement("div", { style:{ fontWeight:"900" } }, "🛠️ Ajuste manual"),
+                React.createElement("div", { className:"small" }, "Pra adaptar ao seu dia 🌸"),
+                React.createElement("div", { className:"row", style:{ marginTop:"10px" } },
+                  React.createElement("button", { className:"btn btnMini", onClick: () => addSeconds(60) }, "+1 min"),
+                  React.createElement("button", { className:"btn btnMini", onClick: () => addSeconds(5*60) }, "+5 min"),
+                  React.createElement("button", { className:"btn btnMini", onClick: () => addSeconds(-60) }, "-1 min"),
+                  React.createElement("button", { className:"btn btnMini btnDanger", onClick: () => setTimerSeconds(0) }, "Zerar")
+                )
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"hint" },
+              "💡 Dica: Você pode entrar em qualquer tarefa e apertar ⏱️ para iniciar o timer automático com o tempo dela!"
+            )
+          )
+        )
+      );
+    }
+
+    function HumorPanel(props){
+      const { moodToday, setMoodToday, moodHistory } = props;
+
+      const last7 = useMemo(() => {
+        const arr = [];
+        for(let i=6;i>=0;i--){
+          const d = new Date();
+          d.setDate(d.getDate()-i);
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth()+1).padStart(2,"0");
+          const dd = String(d.getDate()).padStart(2,"0");
+          const key = yyyy+"-"+mm+"-"+dd;
+          arr.push({ key, value: moodHistory[key] ?? null });
+        }
+        return arr;
+      }, [moodHistory]);
+
+      const avg7 = useMemo(() => {
+        const vals = last7.map(x => x.value).filter(v => typeof v === "number");
+        if(vals.length === 0) return null;
+        return Math.round(vals.reduce((a,b)=>a+b,0) / vals.length);
+      }, [last7]);
+
+      return (
+        React.createElement("div", { className:"grid" },
+
+          React.createElement("div", { className:"card" },
+            React.createElement("div", { className:"cardHeader" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"cardTitle" }, "😊 Humor da Su"),
+                React.createElement("div", { className:"cardSub" }, "Seu bem-estar também é uma meta 💖")
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"field" },
+              React.createElement("label", null, "🌸 Como você está se sentindo agora?"),
+              React.createElement("input", {
+                type:"range",
+                min: 0,
+                max: 100,
+                value: moodToday,
+                onChange: (e) => setMoodToday(Number(e.target.value))
+              }),
+              React.createElement("div", { className:"small" },
+                "Hoje você marcou: ", React.createElement("b", null, moodToday), " / 100"
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"hint" },
+              "💖 Você não precisa estar bem todos os dias. Mas você sempre pode se cuidar."
+            )
+          ),
+
+          React.createElement("div", { className:"card" },
+            React.createElement("div", { className:"cardHeader" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"cardTitle" }, "📈 Últimos 7 dias"),
+                React.createElement("div", { className:"cardSub" }, "Média semanal: " + (avg7 == null ? "Sem dados ainda" : (avg7 + "/100 ✨"))
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"noteBox" },
+              last7.map(day => (
+                React.createElement("div", { key:day.key, className:"row", style:{ justifyContent:"space-between", marginBottom:"8px" } },
+                  React.createElement("div", { className:"small" }, "📅 ", day.key),
+                  React.createElement("div", { className:"badge" }, day.value == null ? "—" : (day.value + "/100"))
+                )
+              ))
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"small" },
+              "✨ Em breve você vai ver gráficos semanais e mensais aqui (já está salvando tudo automaticamente!)."
+            )
+          )
+        )
+      );
+    }
+
+    function FechamentoPanel(props){
+      const { modules, moodHistory, today, colorOf } = props;
+
+      const moodVals = Object.values(moodHistory).filter(v => typeof v === "number");
+      const moodAvg = moodVals.length ? Math.round(moodVals.reduce((a,b)=>a+b,0)/moodVals.length) : null;
+
+      const allTasks = modules.flatMap(m => m.tasks.map(t => ({ ...t, module:m })));
+
+      const doneCount = allTasks.filter(t => t.doneDates && t.doneDates[today]).length;
+      const totalCount = allTasks.length;
+      const pct = totalCount ? Math.round((doneCount/totalCount)*100) : 0;
+
+      let bestModule = null;
+      let bestPct = -1;
+
+      modules.forEach(m => {
+        const total = m.tasks.length;
+        const done = m.tasks.filter(t => t.doneDates && t.doneDates[today]).length;
+        const p = total ? Math.round((done/total)*100) : 0;
+        if(p > bestPct){
+          bestPct = p;
+          bestModule = m;
+        }
+      }); const feedback = useMemo(() => {
+        const lines = [];
+        if(bestModule){
+          lines.push("🌟 Hoje você foi mais constante em: " + bestModule.name + " " + (bestModule.emoji||"✨"));
+        }
+        if(moodAvg != null){
+          if(moodAvg >= 75) lines.push("😊 Seu humor geral está ótimo! Continue se cuidando com carinho 💖");
+          else if(moodAvg >= 50) lines.push("🌸 Seu humor está estável. Pequenos descansos ajudam muito ✨");
+          else lines.push("🫶 Seu humor está baixo. Seja gentil com você, Su. Você é preciosa 💖");
+        }else{
+          lines.push("📌 Comece marcando seu humor diariamente para o app analisar sua evolução ✨");
+        }
+
+        if(pct >= 80) lines.push("🏆 Você está brilhando! Sua rotina está incrível!");
+        else if(pct >= 50) lines.push("💪 Você está indo muito bem! Só continue com leveza.");
+        else lines.push("🌷 Hoje foi mais leve. Amanhã é uma nova chance. Você consegue!");
+
+        lines.push("✨ Lembrete da Li: constância é mais importante que perfeição.");
+
+        return lines;
+      }, [bestModule, moodAvg, pct]);
+
+      return (
+        React.createElement("div", { className:"grid" },
+
+          React.createElement("div", { className:"card" },
+            React.createElement("div", { className:"cardHeader" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"cardTitle" }, "📊 Fechamento Inteligente"),
+                React.createElement("div", { className:"cardSub" }, "Seu resumo do dia (e do mês em breve) 💖")
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"noteBox" },
+              React.createElement("div", { className:"row", style:{ justifyContent:"space-between" } },
+                React.createElement("div", { className:"small" }, "📅 Hoje: ", today),
+                React.createElement("div", { className:"badge " + (pct>=70 ? "ok" : pct>=40 ? "warn" : "bad") }, pct + "% concluído")
+              ),
+
+              React.createElement("div", { className:"divider" }),
+
+              feedback.map((line, idx) =>
+                React.createElement("div", { key:idx, className:"small", style:{ marginBottom:"8px" } }, line)
+              )
+            )
+          ),
+
+          React.createElement("div", { className:"card" },
+            React.createElement("div", { className:"cardHeader" },
+              React.createElement("div", null,
+                React.createElement("div", { className:"cardTitle" }, "🌸 Constância por categoria"),
+                React.createElement("div", { className:"cardSub" }, "Pra você ver onde está brilhando ✨")
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            modules.map(m => {
+              const total = m.tasks.length;
+              const done = m.tasks.filter(t => t.doneDates && t.doneDates[today]).length;
+              const p = total ? Math.round((done/total)*100) : 0;
+
+              return React.createElement("div", { key:m.id, className:"noteBox", style:{ marginBottom:"10px" } },
+                React.createElement("div", { className:"row", style:{ justifyContent:"space-between" } },
+                  React.createElement("div", { className:"tag" },
+                    React.createElement("span", { className:"dot", style:{ background: colorOf(m.colorKey) } }),
+                    m.emoji, " ", m.name
+                  ),
+                  React.createElement("div", { className:"badge" }, p + "%")
+                ),
+                React.createElement("div", { className:"progressBar", style:{ marginTop:"10px" } },
+                  React.createElement("div", { className:"progressFill", style:{ width: p + "%" } })
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+
+    function ModalTask(props){
+      const {
+        show,
+        onClose,
+        onSave,
+        onDelete,
+        editTaskId,
+        taskName, setTaskName,
+        taskEmoji, setTaskEmoji,
+        taskColorKey, setTaskColorKey,
+        taskSchedule, setTaskSchedule,
+        taskMinutes, setTaskMinutes
+      } = props;
+
+      if(!show) return null;
+
+      return (
+        React.createElement("div", { className:"modalOverlay", style:{ display:"flex" } },
+          React.createElement("div", { className:"modal" },
+
+            React.createElement("div", { className:"modalHeader" },
+              React.createElement("div", null,
+                React.createElement("h3", { className:"modalTitle" }, editTaskId ? "✏️ Editar Tarefa" : "➕ Nova Tarefa"),
+                React.createElement("div", { className:"small" }, "Tudo aqui é editável: cor, emoji, tempo, frequência 💖")
+              ),
+              React.createElement("button", { className:"closeX", onClick:onClose }, "✖")
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"miniGrid" },
+
+              React.createElement("div", { className:"field" },
+                React.createElement("label", null, "📝 Nome da tarefa"),
+                React.createElement("input", {
+                  value: taskName,
+                  onChange: (e) => setTaskName(e.target.value),
+                  placeholder: "Ex: Limpar pia ✨"
+                })
+              ),
+
+              React.createElement("div", { className:"field" },
+                React.createElement("label", null, "😊 Emoji / ícone"),
+                React.createElement("select", {
+                  value: taskEmoji,
+                  onChange: (e) => setTaskEmoji(e.target.value)
+                },
+                  EMOJI_SUGGESTIONS.map((em, idx) =>
+                    React.createElement("option", { key:idx, value: em }, em)
+                  )
+                )
+              ),
+
+              React.createElement("div", { className:"field" },
+                React.createElement("label", null, "🎨 Cor da tarefa"),
+                React.createElement("select", {
+                  value: taskColorKey,
+                  onChange: (e) => setTaskColorKey(e.target.value)
+                },
+                  COLOR_PRESETS.map(c =>
+                    React.createElement("option", { key:c.key, value:c.key }, c.label)
+                  )
+                )
+              ),
+
+              React.createElement("div", { className:"field" },
+                React.createElement("label", null, "📅 Frequência / Horário"),
+                React.createElement("input", {
+                  value: taskSchedule,
+                  onChange: (e) => setTaskSchedule(e.target.value),
+                  placeholder: "Ex: Segunda 19:00"
+                })
+              ),
+
+              React.createElement("div", { className:"field" },
+                React.createElement("label", null, "⏱️ Minutos do cronômetro"),
+                React.createElement("input", {
+                  type:"number",
+                  value: taskMinutes,
+                  onChange: (e) => setTaskMinutes(e.target.value),
+                  min: 1
+                })
+              )
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"row", style:{ justifyContent:"space-between" } },
+              React.createElement("button", { className:"btn btnPrimary", onClick:onSave }, "💾 Salvar"),
+              editTaskId && React.createElement("button", { className:"btn btnDanger", onClick:onDelete }, "🗑️ Excluir")
+            )
+          )
+        )
+      );
+    }
+
+    function ThemeModal(props){
+      const {
+        show,
+        onClose,
+        modules,
+        setModules,
+        quotes,
+        setQuotes,
+        colorOf
+      } = props;
+
+      const [newQuote, setNewQuote] = useState("");
+
+      if(!show) return null;
+
+      function updateModuleColor(moduleId, colorKey){
+        setModules(prev => prev.map(m => {
+          if(m.id !== moduleId) return m;
+          return { ...m, colorKey };
+        }));
+      }
+
+      function addQuote(){
+        if(!newQuote.trim()) return;
+        setQuotes(prev => [...prev, newQuote.trim()]);
+        setNewQuote("");
+      }
+
+      function removeQuote(index){
+        if(!confirm("Remover essa frase? 🥺")) return;
+        setQuotes(prev => prev.filter((q,i) => i !== index));
+      }
+
+      return (
+        React.createElement("div", { className:"modalOverlay", style:{ display:"flex" } },
+          React.createElement("div", { className:"modal" },
+
+            React.createElement("div", { className:"modalHeader" },
+              React.createElement("div", null,
+                React.createElement("h3", { className:"modalTitle" }, "🎨 Personalização da Su"),
+                React.createElement("div", { className:"small" }, "Aqui você muda cores e frases do seu jeitinho 💖")
+              ),
+              React.createElement("button", { className:"closeX", onClick:onClose }, "✖")
+            ),
+
+            React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"noteBox" },
+              React.createElement("div", { style:{ fontWeight:"900", marginBottom:"8px" } }, "🌈 Mudar cor das categorias"),
+              modules.map(m =>
+                React.createElement("div", { key:m.id, className:"row", style:{ justifyContent:"space-between", marginBottom:"10px" } },
+                  React.createElement("div", { className:"tag" },
+                    React.createElement("span", { className:"dot", style:{ background: colorOf(m.colorKey) } }),
+                    m.emoji, " ", m.name
+                  ),
+                  React.createElement("select", {
+                    value: m.colorKey,
+                    onChange: (e) => updateModuleColor(m.id, e.target.value),
+                    style:{ maxWidth:"220px" }
+                  },
+                    COLOR_PRESETS.map(c =>
+                      React.createElement("option", { key:c.key, value:c.key }, c.label)
+                    )
+                  )
+                )
+              )
+            ),
+    React.createElement("div", { className:"divider" }),
+
+            React.createElement("div", { className:"noteBox" },
+              React.createElement("div", { style:{ fontWeight:"900", marginBottom:"8px" } }, "💬 Frases motivacionais"),
+              React.createElement("div", { className:"small" }, "Você pode adicionar as suas e remover as que não quiser ✨"),
+
+              React.createElement("div", { className:"row", style:{ marginTop:"10px" } },
+                React.createElement("input", {
+                  value: newQuote,
+                  onChange: (e) => setNewQuote(e.target.value),
+                  placeholder: "Digite uma frase linda aqui 💖"
+                }),
+                React.createElement("button", { className:"btn btnMini btnPrimary", onClick:addQuote }, "➕ Adicionar")
+              ),
+
+              React.createElement("div", { className:"divider" }),
+
+              quotes.map((q, idx) =>
+                React.createElement("div", { key:idx, className:"row", style:{ justifyContent:"space-between", marginBottom:"10px" } },
+                  React.createElement("div", { className:"small", style:{ flex:1, marginRight:"10px" } }, "🌸 ", q),
+                  React.createElement("button", { className:"btn btnMini btnDanger", onClick: () => removeQuote(idx) }, "Remover")
+                )
+              )
+            )
+          )
+        )
+      );
+    }function App(){
+      const today = getTodayKey();
+
+      const [tab, setTab] = useState("rotinas");
+
+      const [showTaskModal, setShowTaskModal] = useState(false);
+      const [showThemeModal, setShowThemeModal] = useState(false);
+
+      const [activeModuleId, setActiveModuleId] = useState(null);
+      const [editTaskId, setEditTaskId] = useState(null);
+
+      const [taskName, setTaskName] = useState("");
+      const [taskEmoji, setTaskEmoji] = useState("🌸");
+      const [taskColorKey, setTaskColorKey] = useState("pink");
+      const [taskSchedule, setTaskSchedule] = useState("Diário");
+      const [taskMinutes, setTaskMinutes] = useState(15);
+
+      const [timerSeconds, setTimerSeconds] = useState(15 * 60);
+      const [timerRunning, setTimerRunning] = useState(false);
+      const [timerLabel, setTimerLabel] = useState("Cronômetro Fofo ✨");
+
+      const [moodToday, setMoodToday] = useState(70);
+
+      const [quotes, setQuotes] = useState(() => load("su_quotes", [
+        "Su, você é capaz de cuidar da sua vida com doçura 💖",
+        "A vida não precisa ser perfeita para ser maravilhosa ✨",
+        "Pequenos passos todos os dias criam grandes mudanças 🌷",
+        "Hoje é um dia lindo para ser constante 🌸",
+        "Você é preciosa, Su. Não se cobre tanto 🫶"
+      ]));
+
+      const [moodHistory, setMoodHistory] = useState(() => load("su_mood_history", {}));
+
+      const [modules, setModules] = useState(() => load("su_modules", [
+        {
+          id: "fe",
+          name: "Rotina Constante",
+          emoji: "🕊️",
+          colorKey: "tiffany",
+          description: "Fé, estudo e constância espiritual",
+          notes: [
+            "📖 Segunda (19:00) — Estudo da Bíblia com o Lucas",
+            "⏰ Quarta (07:30) — Iniciar preparação",
+            "✍️ Quarta (08:00) — Campo Zoom (Cartas)",
+            "📝 Quarta (13:00) — Preparar reunião",
+            "📚 Sábado (pós-almoço) — Estudo da Sentinela",
+            "👔 Sábado (17:00) — Arrumar crianças e sair"
+          ],
+          tasks: [
+            { id:"fe1", name:"Estudo da Bíblia com o Lucas", emoji:"📖", colorKey:"tiffany", schedule:"Segunda 19:00", minutes:45, doneDates:{} },
+            { id:"fe2", name:"Preparação do Campo", emoji:"⏰", colorKey:"tiffany", schedule:"Quarta 07:30", minutes:30, doneDates:{} },
+            { id:"fe3", name:"Campo pelo Zoom (Cartas)", emoji:"✍️", colorKey:"tiffany", schedule:"Quarta 08:00", minutes:60, doneDates:{} },
+            { id:"fe4", name:"Preparar Reunião Meio de Semana", emoji:"📝", colorKey:"tiffany", schedule:"Quarta 13:00", minutes:60, doneDates:{} },
+            { id:"fe5", name:"Estudo da Sentinela", emoji:"📚", colorKey:"tiffany", schedule:"Sábado pós-almoço", minutes:60, doneDates:{} },
+            { id:"fe6", name:"Arrumar crianças e sair", emoji:"👔", colorKey:"tiffany", schedule:"Sábado 17:00", minutes:30, doneDates:{} }
+          ]
+        },
+
+        {
+          id:"casa",
+          name:"Casa & Regras",
+          emoji:"🏡",
+          colorKey:"pink",
+          description:"Organização da casa, closet e cinco ous",
+          notes: [
+            "🛏️ Hábito de Ouro: Arrumar a cama assim que o Edinei levar o Lucas na porteira",
+            "👗 Closet: Uma seção por dia",
+            "🔄 Lei do Minimalismo: Entrou uma peça, sai outra"
+          ],
+          tasks: [
+            { id:"c1", name:"Arrumar a cama", emoji:"🛏️", colorKey:"pink", schedule:"Diário (manhã)", minutes:5, doneDates:{} },
+            { id:"c2", name:"Cinco Ous - Lavou", emoji:"🫧", colorKey:"pink", schedule:"Conforme necessidade", minutes:15, doneDates:{} },
+            { id:"c3", name:"Cinco Ous - Pendurou", emoji:"☀️", colorKey:"pink", schedule:"Conforme necessidade", minutes:10, doneDates:{} },
+            { id:"c4", name:"Cinco Ous - Dobrou", emoji:"👐", colorKey:"pink", schedule:"Conforme necessidade", minutes:20, doneDates:{} },
+            { id:"c5", name:"Cinco Ous - Passou", emoji:"💨", colorKey:"pink", schedule:"Conforme necessidade", minutes:30, doneDates:{} },
+            { id:"c6", name:"Cinco Ous - Guardou", emoji:"🚪", colorKey:"pink", schedule:"Conforme necessidade", minutes:10, doneDates:{} },
+            { id:"c7", name:"Closet: uma seção por dia", emoji:"👗", colorKey:"pink", schedule:"Diário", minutes:20, doneDates:{} },
+            { id:"c8", name:"Pia limpa e cozinha organizada", emoji:"🧼", colorKey:"beige", schedule:"Diário", minutes:15, doneDates:{} },
+            { id:"c9", name:"Varrer e passar pano", emoji:"🧹", colorKey:"beige", schedule:"Diário", minutes:20, doneDates:{} }
+          ]
+        },
+
+        {
+          id:"sitio",
+          name:"Sítio & Horta",
+          emoji:"🌿",
+          colorKey:"green",
+          description:"Horta, riacho e cuidados com a terra",
+          notes: [
+            "🌱 Horta do Zero: almeirão e novas mudas",
+            "🌊 Riachinho: rastelar e cuidar das flores do fundo"
+          ],
+          tasks: [
+            { id:"s1", name:"Cuidar do almeirão", emoji:"🥬", colorKey:"green", schedule:"Semanal", minutes:20, doneDates:{} },
+            { id:"s2", name:"Plantar mudas novas", emoji:"🌱", colorKey:"green", schedule:"Semanal", minutes:30, doneDates:{} },
+            { id:"s3", name:"Rastelar o riacho", emoji:"🌊", colorKey:"green", schedule:"Semanal", minutes:25, doneDates:{} },
+            { id:"s4", name:"Cuidar das flores do fundo", emoji:"🌸", colorKey:"green", schedule:"Semanal", minutes:20, doneDates:{} }
+          ]
+        },
+
+        {
+          id:"cozinha",
+          name:"Cozinha Caipira",
+          emoji:"🥣",
+          colorKey:"beige",
+          description:"Fogão a lenha, congelados e produção semanal",
+          notes: [
+            "🔥 Dia de produção: preparar feijão, carnes, legumes e congelar",
+            "🧊 Estoque: feijão, carne moída, carne desfiada, legumes branqueados",
+            "🍞 Misturas secas: pão de queijo e bolos"
+          ],
+          tasks: [
+            { id:"k1", name:"Produção semanal (fogão a lenha)", emoji:"🔥", colorKey:"beige", schedule:"1x por semana", minutes:120, doneDates:{} },
+            { id:"k2", name:"Congelar feijão e carnes", emoji:"🧊", colorKey:"beige", schedule:"Semanal", minutes:40, doneDates:{} },
+            { id:"k3", name:"Branquear legumes", emoji:"🥕", colorKey:"beige", schedule:"Semanal", minutes:35, doneDates:{} },
+            { id:"k4", name:"Separar misturas secas", emoji:"🍞", colorKey:"beige", schedule:"Semanal", minutes:25, doneDates:{} }
+          ]
+        },
+
+        {
+          id:"beleza",
+          name:"Autocuidado & Saúde",
+          emoji:"💅",
+          colorKey:"pink",
+          description:"Henê, depilação, água e anticoncepcional",
+          notes: [
+            "🖤 Henê: registrar data e contar até o retoque",
+            "💊 Anticoncepcional: lembrar diariamente",
+            "💧 Meta água: 8 copos por dia"
+          ],
+          tasks: [
+            { id:"b1", name:"Tomar anticoncepcional", emoji:"💊", colorKey:"tiffany", schedule:"Diário", minutes:1, doneDates:{} },
+            { id:"b2", name:"Beber 8 copos de água", emoji:"💧", colorKey:"tiffany", schedule:"Diário", minutes:1, doneDates:{} },
+            { id:"b3", name:"Cronograma capilar (Hidratação)", emoji:"🧴", colorKey:"pink", schedule:"Semanal", minutes:40, doneDates:{} },
+            { id:"b4", name:"Cronograma capilar (Nutrição)", emoji:"🥑", colorKey:"pink", schedule:"Semanal", minutes:40, doneDates:{} },
+            { id:"b5", name:"Cronograma capilar (Reconstrução)", emoji:"🧬", colorKey:"pink", schedule:"Mensal", minutes:50, doneDates:{} },
+            { id:"b6", name:"Henê (retoque)", emoji:"🖤", colorKey:"pink", schedule:"A cada 30 dias", minutes:90, doneDates:{} },
+            { id:"b7", name:"Depilação", emoji:"✨", colorKey:"pink", schedule:"A cada 20 dias", minutes:60, doneDates:{} }
+          ]
+        }
+      ]));
+
+      useEffect(() => save("su_modules", modules), [modules]);
+      useEffect(() => save("su_quotes", quotes), [quotes]);
+      useEffect(() => save("su_mood_history", moodHistory), [moodHistory]);
+
+      useEffect(() => {
+        setMoodHistory(prev => ({ ...prev, [today]: moodToday }));
+      }, [moodToday]);
+
+      useEffect(() => {
+        if(!timerRunning) return;
+        const id = setInterval(() => {
+          setTimerSeconds(s => {
+            if(s <= 1){
+              clearInterval(id);
+              setTimerRunning(false);
+              try{ navigator.vibrate && navigator.vibrate([200,100,200,100,400]); }catch(e){}
+              alert("⏰ Tempo acabou! Você conseguiu, Su! 💖✨");
+              return 0;
+            }
+            return s - 1;
+          });
+        }, 1000);
+        return () => clearInterval(id);
+      }, [timerRunning]);
+
+      function colorOf(key){
+        const found = COLOR_PRESETS.find(c => c.key === key);
+        return found ? found.value : "#ff7ab6";
+      }
+
+      function percentDone(module){
+        if(!module.tasks || module.tasks.length === 0) return 0;
+        const done = module.tasks.filter(t => t.doneDates && t.doneDates[today]).length;
+        return Math.round((done / module.tasks.length) * 100);
+      }
+
+      function openNewTask(moduleId){
+        setActiveModuleId(moduleId);
+        setEditTaskId(null);
+        setTaskName("");
+        setTaskEmoji("🌸");
+        setTaskColorKey("pink");
+        setTaskSchedule("Diário");
+        setTaskMinutes(15);
+        setShowTaskModal(true);
+      }
+
+      function openEditTask(moduleId, task){
+        setActiveModuleId(moduleId);
+        setEditTaskId(task.id);
+        setTaskName(task.name);
+        setTaskEmoji(task.emoji || "🌸");
+        setTaskColorKey(task.colorKey || "pink");
+        setTaskSchedule(task.schedule || "Diário");
+        setTaskMinutes(task.minutes || 15);
+        setShowTaskModal(true);
+      }
+
+      function saveTask(){
+        if(!taskName.trim()){
+          alert("🥺 Coloca um nome na tarefa!");
+          return;
+        }
+
+        setModules(prev => prev.map(m => {
+          if(m.id !== activeModuleId) return m;
+
+          const updated = { ...m };
+
+          if(editTaskId){
+            updated.tasks = updated.tasks.map(t => {
+              if(t.id !== editTaskId) return t;
+              return {
+                ...t,
+                name: taskName.trim(),
+                emoji: taskEmoji,
+                colorKey: taskColorKey,
+                schedule: taskSchedule.trim(),
+                minutes: Number(taskMinutes) || 15
+              };
+            });
+          } else {
+            const newId = "t" + Math.random().toString(36).slice(2,9);
+            updated.tasks = [
+              ...updated.tasks,
+              {
+                id: newId,
+                name: taskName.trim(),
+                emoji: taskEmoji,
+                colorKey: taskColorKey,
+                schedule: taskSchedule.trim(),
+                minutes: Number(taskMinutes) || 15,
+                doneDates: {}
+              }
+            ];
+          }
+
+          return updated;
+        }));
+
+        setShowTaskModal(false);
+      }
+
+      function deleteTask(){
+        if(!confirm("Excluir essa tarefa? 🥺")) return;
+
+        setModules(prev => prev.map(m => {
+          if(m.id !== activeModuleId) return m;
+          return { ...m, tasks: m.tasks.filter(t => t.id !== editTaskId) };
+        }));
+
+        setShowTaskModal(false);
+      }
+
+      function toggleDone(moduleId, taskId){
+        setModules(prev => prev.map(m => {
+          if(m.id !== moduleId) return m;
+          return {
+            ...m,
+            tasks: m.tasks.map(t => {
+              if(t.id !== taskId) return t;
+              const doneDates = { ...(t.doneDates || {}) };
+              if(doneDates[today]) delete doneDates[today];
+              else doneDates[today] = true;
+              return { ...t, doneDates };
+            })
+          };
+        }));
+      }
+
+      function startTaskTimer(task){
+        const mins = Number(task.minutes) || 15;
+        setTimerSeconds(mins * 60);
+        setTimerLabel(task.emoji + " " + task.name);
+        setTab("timer");
+        setTimerRunning(true);
+      }
+
+      function setTimerPreset(min){
+        setTimerSeconds(min * 60);
+        setTimerLabel("Cronômetro " + min + " min ✨");
+      }
+
+      const quote = useMemo(() => {
+        if(!quotes || quotes.length === 0) return "";
+        const idx = Math.floor(Math.random() * quotes.length);
+        return quotes[idx];
+      }, [tab]);
+
+      return (
+        React.createElement("div", { className:"app" },
+
+          React.createElement("div", { className:"topbar" },
+            React.createElement("div", { className:"brand" },
+              React.createElement("div", { className:"logo" }, "🌸"),
+              React.createElement("div", null,
+                React.createElement("div", { className:"title" }, "Rotina da Su"),
+                React.createElement("div", { className:"subtitle" }, "Seu app fofo e poderoso ✨")
+              )
+            ),
+
+            React.createElement("button", {
+              className:"btn btnMini btnSoft",
+              onClick: () => setShowThemeModal(true)
+            }, "🎨 Personalizar")
+          ),
+
+          React.createElement("div", { className:"quoteBox" },
+            React.createElement("div", { className:"small" }, "💖 Frase do dia"),
+            React.createElement("div", { className:"quote" }, quote)
+          ),
+
+          React.createElement("div", { className:"content" },
+
+            tab === "rotinas" && React.createElement(RotinasPanel, {
+              modules,
+              colorOf,
+              percentDone,
+              openNewTask,
+              toggleDone,
+              startTaskTimer,
+              openEditTask,
+              today
+            }),
+
+            tab === "timer" && React.createElement(TimerPanel, {
+              timerSeconds,
+              setTimerSeconds,
+              timerRunning,
+              setTimerRunning,
+              timerLabel,
+              setTimerLabel,
+              setTimerPreset
+            }),
+
+            tab === "humor" && React.createElement(HumorPanel, {
+              moodToday,
+              setMoodToday,
+              moodHistory
+            }),
+
+            tab === "fechamento" && React.createElement(FechamentoPanel, {
+              modules,
+              moodHistory,
+              today,
+              colorOf
+            })
+          ),
+
+          React.createElement("div", { className:"nav" },
+            React.createElement("button", {
+              className:"navBtn " + (tab==="rotinas" ? "active" : ""),
+              onClick: () => setTab("rotinas")
+            }, "📋", React.createElement("span", null, "Rotinas")),
+
+            React.createElement("button", {
+              className:"navBtn " + (tab==="timer" ? "active" : ""),
+              onClick: () => setTab("timer")
+            }, "⏱️", React.createElement("span", null, "Timer")),
+
+            React.createElement("button", {
+              className:"navBtn " + (tab==="humor" ? "active" : ""),
+              onClick: () => setTab("humor")
+            }, "😊", React.createElement("span", null, "Humor")),
+
+            React.createElement("button", {
+              className:"navBtn " + (tab==="fechamento" ? "active" : ""),
+              onClick: () => setTab("fechamento")
+            }, "📊", React.createElement("span", null, "Fechamento"))
+          ),
+
+          React.createElement(ModalTask, {
+            show: showTaskModal,
+            onClose: () => setShowTaskModal(false),
+            onSave: saveTask,
+            onDelete: deleteTask,
+            editTaskId,
+            taskName, setTaskName,
+            taskEmoji, setTaskEmoji,
+            taskColorKey, setTaskColorKey,
+            taskSchedule, setTaskSchedule,
+            taskMinutes, setTaskMinutes
+          }),
+
+          React.createElement(ThemeModal, {
+            show: showThemeModal,
+            onClose: () => setShowThemeModal(false),
+            modules,
+            setModules,
+            quotes,
+            setQuotes,
+            colorOf
+          })
+        )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      React.createElement(App)
+    );
+  </script>
+
+  <!-- SERVICE WORKER INLINE (OFFLINE) -->
+  <script>
+    if("serviceWorker" in navigator){
+      window.addEventListener("load", () => {
+        const swCode = `
+          const CACHE_NAME = "rotina-su-v1";
+          const URLS = ["./"];
+
+          self.addEventListener("install", (event) => {
+            event.waitUntil(
+              caches.open(CACHE_NAME).then(cache => cache.addAll(URLS))
+            );
+          });
+
+          self.addEventListener("activate", (event) => {
+            event.waitUntil(
+              caches.keys().then(keys => Promise.all(
+                keys.map(k => k !== CACHE_NAME ? caches.delete(k) : null)
+              ))
+            );
+          });
+
+          self.addEventListener("fetch", (event) => {
+            event.respondWith(
+              caches.match(event.request).then(resp => {
+                return resp || fetch(event.request).then(networkResp => {
+                  return caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, networkResp.clone());
+                    return networkResp;
+                  });
+                }).catch(() => caches.match("./"));
+              })
+            );
+          });
+        `;
+
+        const blob = new Blob([swCode], { type:"text/javascript" });
+        const swUrl = URL.createObjectURL(blob);
+
+        navigator.serviceWorker.register(swUrl)
+          .then(() => console.log("🌸 Offline ativado!"))
+          .catch(err => console.log("Erro SW", err));
+      });
+    }
+  </script>
+
+</body>
+</html>
